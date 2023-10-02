@@ -47,7 +47,7 @@ impl Capsule
     fn set_perp(arm: (f32, f32), radius: f32) -> (f32, f32)
     {
 
-        let length = f32::sqrt((arm.0 * arm.0) + (arm.1 * arm.1));
+        let length = libm::sqrtf((arm.0 * arm.0) + (arm.1 * arm.1));
         let mut perp = (-arm.1, arm.0);
 
         if length > f32::EPSILON
@@ -226,8 +226,8 @@ impl crate::Rotate for Capsule
     fn rotate(&mut self, angle: f32)
     {
 
-        let sin = f32::sin(angle);
-        let cos = f32::cos(angle);
+        let sin = libm::sinf(angle);
+        let cos = libm::cosf(angle);
 
         self.rotate_sincos(sin, cos);
 

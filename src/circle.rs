@@ -86,7 +86,7 @@ impl crate::Shape for Circle
         if !normalize
         {
 
-            magnitude = f32::sqrt((axis.0 * axis.0) + (axis.1 * axis.1));
+            magnitude = libm::sqrtf((axis.0 * axis.0) + (axis.1 * axis.1));
 
         }
 

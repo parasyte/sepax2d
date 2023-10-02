@@ -155,6 +155,13 @@
 //! Enable the `serde` feature for (De)Serialization of supported shapes!
 
 #![allow(clippy::needless_return)]
+#![cfg_attr(not(any(test, feature = "std")), no_std)]
+
+#[cfg(not(any(test, feature = "std")))]
+extern crate alloc;
+
+#[cfg(not(any(test, feature = "std")))]
+use alloc::vec;
 
 pub mod polygon;
 pub mod circle;
@@ -366,7 +373,7 @@ fn shape_overlap(axes: &(impl Shape + ?Sized), projected: &(impl Shape + ?Sized)
         if normalize
         {
 
-            let length = f32::sqrt((axis.0 * axis.0) + (axis.1 * axis.1));
+            let length = libm::sqrtf((axis.0 * axis.0) + (axis.1 * axis.1));
                     
             if length > f32::EPSILON
             {
@@ -463,7 +470,7 @@ fn closest(position: (f32, f32), target: (f32, f32), points: &[(f32, f32)]) -> (
 
 }
 
-#[allow(dead_code)]
+#[cfg(test)]
 fn float_equal(left: f32, right: f32) -> bool
 {
 

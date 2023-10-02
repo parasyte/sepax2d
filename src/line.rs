@@ -38,7 +38,7 @@ pub fn intersects_ray(shape: &(impl Shape + ?Sized), ray_position: (f32, f32), r
             if normalized == (0.0, 0.0)
             {
              
-                let length = f32::sqrt(ray_direction.0 * ray_direction.0 + ray_direction.1 * ray_direction.1);
+                let length = libm::sqrtf(ray_direction.0 * ray_direction.0 + ray_direction.1 * ray_direction.1);
                 normalized = (ray_direction.0 / length, ray_direction.1 / length);
                 
             }
@@ -114,7 +114,7 @@ pub fn intersects_segment(shape: &(impl Shape + ?Sized), line_start: (f32, f32),
             if normalized == (0.0, 0.0)
             {
              
-                let length = f32::sqrt(direction.0 * direction.0 + direction.1 * direction.1);
+                let length = libm::sqrtf(direction.0 * direction.0 + direction.1 * direction.1);
                 normalized = (direction.0 / length, direction.1 / length);
                 
             }

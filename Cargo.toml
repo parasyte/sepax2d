@@ -7,9 +7,12 @@ edition = "2021"
 repository = "https://github.com/meowitzher/sepax2d/"
 
 [features]
+default = ["std"]
+std = []
 serde = ["dep:serde"]
 
 [dependencies]
+libm = "0.2"
 serde = { version = "1.0", features = ["derive"], optional = true }
 
 [dev-dependencies]
